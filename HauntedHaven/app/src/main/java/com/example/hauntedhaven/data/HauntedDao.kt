@@ -2,24 +2,20 @@ package com.example.hauntedhaven.data
 
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HauntedDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg places: HauntedPlace)
 
-    @Query("SELECT * FROM haunted_places")
-    suspend fun getAllHauntedPlaces(): List<HauntedPlace>
+    @Query("SELECT * FROM HauntedLocation")
+    fun getAll(): Flow<List<HauntedPlace>>
 
-    @Insert
-    suspend fun insertHauntedPlace(hauntedPlace: HauntedPlace)
+    @Query("SELECT * FROM HauntedLocation WHERE category= :categorys ")
+    fun getByCategory(categorys: String): Flow<List<HauntedPlace>>
 
-    @Update
-    suspend fun updateHauntedPlace(hauntedPlace: HauntedPlace)
 
 
 }

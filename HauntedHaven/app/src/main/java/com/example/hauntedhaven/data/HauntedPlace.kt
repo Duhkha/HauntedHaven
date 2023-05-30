@@ -1,29 +1,23 @@
 package com.example.hauntedhaven.data
 
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "haunted_places")
+@Entity(tableName = "HauntedLocation")
 data class HauntedPlace(
 
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name = "image_uri") val imageUri: String,
-    @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "location") val location: String,
-    @ColumnInfo(name = "price") val price: Double,
-    @ColumnInfo(name = "date") val availableDates: List<String>,
-    @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "details") val details: String,
-    @ColumnInfo(name = "category") val category: String,
-    @ColumnInfo(name = "sleepover") val sleepoverAvailability: Boolean
+    @ColumnInfo(name = "name") val names: String,
+    @ColumnInfo(name = "location") val locations: String,
+    @ColumnInfo(name = "price") val current_price: Double,
+    @ColumnInfo(name = "quick_desc") val quick_description: String,
+    @ColumnInfo(name = "sleep_available") val sleep: String,
+    @ColumnInfo(name = "date") val available_date: String,
+    @ColumnInfo(name = "available_ppl") val people: Int,
+    @ColumnInfo(name = "desc") val description: String,
+    @ColumnInfo(name = "category") val categorys: String,
+    @ColumnInfo(name = "imgUri") val img: String
 
-
-
-) {
-    init {
-        if (name.isBlank()) {
-            name = location
-        }
-    }
-}
+)
